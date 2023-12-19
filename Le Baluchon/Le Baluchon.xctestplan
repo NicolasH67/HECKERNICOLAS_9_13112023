@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "D7261A64-2591-4C7D-A3B9-6B1DB50375B7",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Le Baluchon.xcodeproj",
+          "identifier" : "70CC04992B022AB700980C69",
+          "name" : "Le Baluchon"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Le Baluchon.xcodeproj",
+      "identifier" : "70CC04992B022AB700980C69",
+      "name" : "Le Baluchon"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Le Baluchon.xcodeproj",
+        "identifier" : "70CC04AF2B022AB800980C69",
+        "name" : "Le BaluchonTests"
+      }
+    }
+  ],
+  "version" : 1
+}
