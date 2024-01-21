@@ -6,17 +6,12 @@
 //
 
 import Foundation
-
-struct ExchangeResponse: Decodable {
-    let timestamp: Int
-    let rates: [String: Double]
-}
     
-final class Exchange {
+final class ExchangeRatesLoader {
     
     weak var delegate: ExchangeModelDelegate?
     
-    private let session: URLSession
+    var session: URLSession
     private var task: URLSessionTask?
     
     let url = URL(string: "http://data.fixer.io/api/latest?access_key=5f1d6629fff55e08eb516d98945c39ed")!
@@ -60,6 +55,8 @@ final class Exchange {
             let formattedValue = String(format: "%.2f", newValue)
             delegate?.didUpdateExchangeValue("\(formattedValue) €")
         default:
+            let text = "error with setting"
+            delegate?.didUpdateExchangeValue("\(text)")
             break
         }
     }
