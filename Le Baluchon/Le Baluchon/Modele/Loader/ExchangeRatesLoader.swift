@@ -1,5 +1,5 @@
 //
-//  Exchange.swift
+//  ExchangeRatesLoader.swift
 //  Le Baluchon
 //
 //  Created by Nicolas Hecker on 16/11/2023.
@@ -8,19 +8,17 @@
 import Foundation
     
 final class ExchangeRatesLoader {
-    
-    weak var delegate: ExchangeModelDelegate?
-    
+    var delegate: ExchangeModelDelegate?
     var session: URLSession
-    private var task: URLSessionTask?
-    
-    let url = URL(string: "http://data.fixer.io/api/latest?access_key=5f1d6629fff55e08eb516d98945c39ed")!
-    
+    var task: URLSessionTask?
+        
     init(session: URLSession = URLSession(configuration: .ephemeral)) {
         self.session = session
     }
     
     func getExchange(completion: @escaping (Result<Double, NetworkingError>) -> Void) {
+        let url = ExchangeEndpoint.Exchange("nil").build()
+        
         task?.cancel()
         task = session.dataTask(with: url) { data, response, error in
             guard let data, error == nil else {
