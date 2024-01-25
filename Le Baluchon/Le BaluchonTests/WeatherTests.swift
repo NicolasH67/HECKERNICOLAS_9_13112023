@@ -1,5 +1,5 @@
 //
-//  WeatherTest.swift
+//  WeatherTests.swift
 //  Le BaluchonTests
 //
 //  Created by Nicolas Hecker on 02/01/2024.
@@ -47,11 +47,11 @@ class MockWeatherURLProtocol: URLProtocol {
 
 class WeatherTests: XCTestCase {
     
-    private func makeSUT() -> (Weather) {
+    private func makeSUT() -> (Weatherloader) {
         MockWeatherURLProtocol.resetMock()
         let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [MockURLProtocol.self]
-        let sut = Weather(session: URLSession(configuration: config))
+        config.protocolClasses = [MockWeatherURLProtocol.self]
+        let sut = Weatherloader(session: URLSession(configuration: config))
         return sut
     }
     
@@ -79,14 +79,14 @@ class WeatherTests: XCTestCase {
             }
             """.data(using: .utf8)!
 
-        MockURLProtocol.mockResponseData = mockResponseData
+        MockWeatherURLProtocol.mockResponseData = mockResponseData
         let mockResponse = HTTPURLResponse(
-            url: URL(string: "https://api.openweathermap.org/data/2.5/weather")!,
+            url: URL(string: "https://example.com")!,
             statusCode: 200,
             httpVersion: nil,
             headerFields: nil
         )
-        MockURLProtocol.mockResponse = mockResponse
+        MockWeatherURLProtocol.mockResponse = mockResponse
 
         sut.getWeather(lat: "37.7749", lon: "-122.4194") { result in
             switch result {
@@ -108,14 +108,14 @@ class WeatherTests: XCTestCase {
 
         let mockResponseData = "invalidData".data(using: .utf8)!
 
-        MockURLProtocol.mockResponseData = mockResponseData
+        MockWeatherURLProtocol.mockResponseData = mockResponseData
         let mockResponse = HTTPURLResponse(
-            url: URL(string: "https://api.openweathermap.org/data/2.5/weather")!,
+            url: URL(string: "https://example.com")!,
             statusCode: 200,
             httpVersion: nil,
             headerFields: nil
         )
-        MockURLProtocol.mockResponse = mockResponse
+        MockWeatherURLProtocol.mockResponse = mockResponse
 
         sut.getWeather(lat: "37.7749", lon: "-122.4194") { result in
             switch result {
@@ -133,7 +133,7 @@ class WeatherTests: XCTestCase {
         let sut = makeSUT()
         let expectation = XCTestExpectation(description: "Appel API Exchange")
         let mockResponseData = "Data".data(using: .utf8)!
-        MockURLProtocol.mockResponseData = mockResponseData
+        MockWeatherURLProtocol.mockResponseData = mockResponseData
         let mockResponseStatusCode = 500
         let mockResponse = HTTPURLResponse(
             url: URL(string: "https://example.com")!,
@@ -141,7 +141,7 @@ class WeatherTests: XCTestCase {
             httpVersion: nil,
             headerFields: nil
         )
-        MockURLProtocol.mockResponse = mockResponse
+        MockWeatherURLProtocol.mockResponse = mockResponse
 
         sut.getWeather(lat: "37.7749", lon: "-122.4194") { result in
             switch result {
@@ -161,7 +161,7 @@ class WeatherTests: XCTestCase {
         let sut = makeSUT()
         let expectation = XCTestExpectation(description: "Appel API Exchange")
 
-        MockURLProtocol.mockError = NSError(domain: "Test", code: 123, userInfo: nil)
+        MockWeatherURLProtocol.mockError = NSError(domain: "Test", code: 123, userInfo: nil)
 
         sut.getWeather(lat: "37.7749", lon: "-122.4194") { result in
             switch result {

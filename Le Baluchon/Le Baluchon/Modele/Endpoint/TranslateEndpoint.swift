@@ -7,9 +7,18 @@
 
 import Foundation
 
+/// Enum representing various endpoints for weather-related API requests.
+///
+/// This enum includes a case for fetching current weather based on latitude and longitude coordinates.
+///
+/// - Note: Ensure to call the `build()` method to obtain a valid URL for the specified endpoint.
 enum TranslateEndpoint {
+    /// Case for translating text to a specified target language.
     case translate(String, String)
     
+    /// Builds and returns a URL for the specified weather endpoint.
+    ///
+    /// - Returns: A URL object for the specified weather API endpoint.
     func build() -> URL {
         var components = URLComponents()
         
@@ -25,7 +34,6 @@ enum TranslateEndpoint {
                 URLQueryItem(name: "format", value: "text")
             ]
         }
-        print(components.url!)
         return components.url!
     }
 }

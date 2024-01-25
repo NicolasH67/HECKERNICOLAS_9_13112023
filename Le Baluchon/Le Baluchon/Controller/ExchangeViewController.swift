@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ExchangeViewController: UIViewController {
+final class ExchangeViewController: UIViewController {
+    
     // MARK: - IBOutlet
     
     @IBOutlet weak var backgroundView: UIView!
@@ -16,9 +17,17 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var firstSetting: UILabel!
     @IBOutlet weak var exchangeLabel: UILabel!
     
-    private let loader = Exchange()
+    //MARK: - Object Initialization
+    
+    private let loader = ExchangeRatesLoader()
+    
+    // MARK: - Exchange Rate Declaration
+    
     private var tauxExchange: Double = 0.0
     
+    /// View Controller Lifecycle method called after the view has been loaded into memory.
+    ///
+    /// This method configures the initial appearance and settings of the view elements.
     override func viewDidLoad() {
         super.viewDidLoad()
             
@@ -28,18 +37,10 @@ class ExchangeViewController: UIViewController {
         amountTextField.keyboardType = .numberPad
         loader.delegate = self
         amountTextField.delegate = self
-        loader.getExchange { result in
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(rate):
-                    self.tauxExchange = rate
-                case .failure:
-                    break
-                }
-            }
-        }
-
+        callEndpoint()
     }
+    
+    //MARK: - IBAction
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         amountTextField.resignFirstResponder()
@@ -60,7 +61,22 @@ class ExchangeViewController: UIViewController {
 
 
 extension ExchangeViewController {
+    
     // MARK: - Methode
+    
+    /// Validates and updates the text field content during user input.
+    ///
+    /// This delegate method is called when the text in the text field is about to change. It performs the following tasks:
+    /// - Validates the current text, range, and replacement string.
+    /// - Updates the text field's content with the modified text.
+    /// - Calls the `loader.updateExchangeValue` method to handle the exchange value update based on the entered text.
+    ///
+    /// - Parameters:
+    ///   - textField: The text field for which the changes are being made.
+    ///   - range: The range of characters to be replaced in the text field.
+    ///   - string: The string that will replace the characters in the specified range.
+    ///
+    /// - Returns: A Boolean value indicating whether the replacement should occur.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text,
               let range = Range(range, in: currentText),
@@ -72,22 +88,20 @@ extension ExchangeViewController {
         return true
     }
     
-    private func showAlert(statusCode: Int) {
-        let alert = UIAlertController(title: "Oups une erreur", message: "Le Status du réseau est\(statusCode)", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { (_) in
-            self.refreshApplication()
-        }
-        alert.addAction(action)
-        present(alert, animated: true)
-    }
-    
-    private func refreshApplication() {
-        loader.getExchange { result in
+    /// Initiates an API call to retrieve the exchange rate.
+    ///
+    /// This method uses the `loader` to make an API call to obtain the exchange rate. If the call is successful,
+    /// it updates the `tauxExchange` property with the retrieved rate. In case of a failure, it shows an alert
+    /// with a 500 status code and provides a refresh action to retry the endpoint call (`callEndpoint()`).
+    private func callEndpoint() {
+        loader.getExchange { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case let .success(rate):
                     self.tauxExchange = rate
                 case .failure:
+                    self.showAlertAndRefresh(statusCode: 500, refreshAction: self.callEndpoint)
                     break
                 }
             }
