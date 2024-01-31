@@ -29,10 +29,10 @@ class WeatherViewController: UIViewController {
     
     //MARK: - Geographic Coordinates
     
-    let latNewYork = "40.71"
-    let lonNewYork = "-74.00"
-    let latParis = "48.85"
-    let lonParis = "2.35"
+    private let latNewYork = "40.71"
+    private let lonNewYork = "-74.00"
+    private let latParis = "48.85"
+    private let lonParis = "2.35"
     
     //MARK: - Object Initialization
     

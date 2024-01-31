@@ -102,7 +102,6 @@ extension ExchangeViewController {
                     self.tauxExchange = rate
                 case .failure:
                     self.showAlertAndRefresh(statusCode: 500, refreshAction: self.callEndpoint)
-                    break
                 }
             }
         }

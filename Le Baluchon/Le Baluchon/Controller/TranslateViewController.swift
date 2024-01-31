@@ -20,7 +20,7 @@ class TranslateViewController: UIViewController {
     
     //MARK: - Object Initialization
     
-    let loader = TranslateLoader()
+    private let loader = TranslateLoader()
     
     //MARK: - Override
     
