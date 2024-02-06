@@ -53,10 +53,10 @@
 		7049B4472B4966DE00272D0B /* TranslateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTests.swift; sourceTree = "<group>"; };
 		705DE9632B319D710093A0B0 /* Le Baluchon.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Le Baluchon.xctestplan"; sourceTree = "<group>"; };
 		705DE9652B31AB8F0093A0B0 /* ExchangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTests.swift; sourceTree = "<group>"; };
-		706754372B5D60D70050A9FC /* Le BaluchonTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Le BaluchonTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		706754382B5D659D0050A9FC /* WeatherEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEndpoint.swift; sourceTree = "<group>"; };
 		7067543A2B5D67790050A9FC /* TranslateEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEndpoint.swift; sourceTree = "<group>"; };
 		7067543C2B5D679C0050A9FC /* ExchangeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeEndpoint.swift; sourceTree = "<group>"; };
+		707C60972B6A73CD0048AC83 /* Le BaluchonTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Le BaluchonTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		708619002B061D5A003720BB /* ExchangeRatesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesLoader.swift; sourceTree = "<group>"; };
 		70BD5A142B44145F006C3B54 /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		70CC049A2B022AB700980C69 /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				705DE9652B31AB8F0093A0B0 /* ExchangeTests.swift */,
-				706754372B5D60D70050A9FC /* Le BaluchonTests-Bridging-Header.h */,
+				707C60972B6A73CD0048AC83 /* Le BaluchonTests-Bridging-Header.h */,
 				70BD5A142B44145F006C3B54 /* WeatherTests.swift */,
 				7049B4472B4966DE00272D0B /* TranslateTests.swift */,
 			);
@@ -189,9 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				70318FD42B0D6C1B005F1DF8 /* NetworkingError.swift */,
-				704DE1712B61B602004B99B2 /* Loader */,
-				7067543F2B5DA7D00050A9FC /* Response */,
 				7067543E2B5DA7B70050A9FC /* Endpoint */,
+				7067543F2B5DA7D00050A9FC /* Response */,
+				704DE1712B61B602004B99B2 /* Loader */,
 			);
 			path = Modele;
 			sourceTree = "<group>";

@@ -28,7 +28,7 @@ enum TranslateEndpoint {
         switch self {
         case let .translate(target, text):
             components.queryItems = [
-                URLQueryItem(name: "key", value: "AIzaSyBxP_uQJ3Kz34MPNo2LiDr2AEmk6PkS4PA"),
+                URLQueryItem(name: "key", value: "YourPass"),
                 URLQueryItem(name: "target", value: target),
                 URLQueryItem(name: "q", value: text),
                 URLQueryItem(name: "format", value: "text")

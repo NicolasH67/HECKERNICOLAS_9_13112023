@@ -31,7 +31,7 @@ enum WeatherEndpoint {
             components.queryItems = [
                 URLQueryItem(name: "lat", value: lat),
                 URLQueryItem(name: "lon", value: lon),
-                URLQueryItem(name: "appid", value: "2711c007e62e5a93869bdb2a1f03155c"),
+                URLQueryItem(name: "appid", value: "YourPass"),
                 URLQueryItem(name: "units", value: "metric")
             ]
         }

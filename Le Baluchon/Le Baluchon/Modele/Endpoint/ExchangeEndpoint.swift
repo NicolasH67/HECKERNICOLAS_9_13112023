@@ -27,7 +27,7 @@ enum ExchangeEndpoint {
         components.host = "data.fixer.io"
         components.path = "/api/latest"
         components.queryItems = [
-            URLQueryItem(name: "access_key", value: "5f1d6629fff55e08eb516d98945c39ed"),
+            URLQueryItem(name: "access_key", value: "YourPass"),
         ]
         return components.url!
     }

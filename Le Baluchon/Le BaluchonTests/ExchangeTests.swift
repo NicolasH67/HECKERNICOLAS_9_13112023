@@ -35,6 +35,10 @@ class MockURLProtocol: URLProtocol {
         client?.urlProtocolDidFinishLoading(self)
     }
     
+    override func stopLoading() {
+        //This function is mandatory, but I do not use it in these tests.
+    }
+    
     static func resetMock() {
         MockURLProtocol.mockError = nil
         MockURLProtocol.mockResponse = nil
